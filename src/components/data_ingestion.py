@@ -11,6 +11,9 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
+from src.components.model_trainer import ModelTrainerconfig
+from src.components.model_trainer import ModelTrainer
+
 
 # all the input required will be in this claas
 
@@ -61,7 +64,11 @@ if __name__ == "__main__":
     train_data,test_data = obj.initiate_data_ingestion()
 
     data_transformation = DataTransformation()
-    data_transformation.initiate_data_transformation(train_data,test_data)
+    train_arr,test_arr,preprocessor_path = data_transformation.initiate_data_transformation(train_data,test_data)
+
+
+    ModelTrainer = ModelTrainer()
+    print(ModelTrainer.initiate_model_trainer(train_arr,test_arr,preprocessor_path))
     
             
 
